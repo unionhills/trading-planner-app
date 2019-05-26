@@ -6,15 +6,21 @@ import { Trackable } from './trackable.model';
  * plan out a trade.
  *
  * @author Union Hills Software
- * @date   May 4, 2019
+ * @date   May 26, 2019
  *
  */
 
 export enum TrendOutlook {
-    Unclear,
-    Up,
-    Down,
-    Sideways
+    Unclear = "unclear",
+    Up = "up",
+    Down = "down",
+    Sideways = "sideways"
+}
+
+export enum OrderStatus {
+    Planned = "planned",
+    Submitted = "submitted",
+    Filled = "filled"
 }
 
 export class TradingPlan implements Trackable {
@@ -24,8 +30,7 @@ export class TradingPlan implements Trackable {
     // For options, the underlying would be the stock symbol
     // whilst the symbol would be the option symbol
     underlying: String;
-    symbol: String;
-    symbolDescription: String;
+    underlyingDescription: String;
  
     marketOutlook: String;
     marketTrend: TrendOutlook;
@@ -34,13 +39,26 @@ export class TradingPlan implements Trackable {
     underlyingTrend: TrendOutlook;
 
     timeFrame: String;
+    strategy: String;
+
+    costPerContract: Number;
+    numberOfContracts: Number;
+
+    stopLoss: Number;
+    technicalStopLoss: Number;
+
+    timeStop: Date;
+
+    limit: Number;
+    technicalLimit: Number;
 
     plannedTradeEntryDate: Date;
     plannedTradeExitDate: Date;
 
-    entryConditions: Array<String>;
-    exitConditions: Array<String>;
+    entryReason: String;
+    contingencies: String;
 
+    status: OrderStatus;
     notes: String;
 
     createdAt: Date;
